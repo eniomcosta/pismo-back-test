@@ -1,0 +1,1 @@
+INSERT INTO account values (1, '12345678900');

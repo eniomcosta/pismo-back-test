@@ -77,7 +77,7 @@ public class AccountControllerTest {
         Long testId = 99L;
 
         mvc.perform(get(String.format("/accounts/%d", testId)))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
 
         verify(accountService, times(1)).findById(testId);
 
