@@ -1,14 +1,21 @@
 package com.eniomcosta.pismobacktest.entities;
 
-import org.springframework.lang.NonNull;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+@RequiredArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "account")
+@Table(name = "account", uniqueConstraints = {
+        @UniqueConstraint(name = "uc_account_document", columnNames = {"document_number"})
+})
 public class Account {
 
     @Id
@@ -16,9 +23,8 @@ public class Account {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NonNull
-    @NotBlank(message = "Document Number is mandatory")
-    @Column(name = "document", unique = true, length = 11, nullable = false)
+    @NotEmpty(message = "Document Number is mandatory")
+    @Column(name = "document_number", unique = true, length = 11, nullable = false)
     private String documentNumber;
 
     @OneToMany(mappedBy = "account", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)

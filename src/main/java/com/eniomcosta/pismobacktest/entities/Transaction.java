@@ -1,12 +1,16 @@
 package com.eniomcosta.pismobacktest.entities;
 
 import com.eniomcosta.pismobacktest.enums.OperationType;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "transaction")
 public class Transaction {
@@ -30,5 +34,5 @@ public class Transaction {
     private Double amount;
 
     @CreatedDate
-    private Instant createdAt;
+    private Instant eventDate;
 }
