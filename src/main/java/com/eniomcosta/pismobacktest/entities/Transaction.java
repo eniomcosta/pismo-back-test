@@ -20,7 +20,7 @@ public class Transaction {
     private Long id;
 
     @NotNull(message = "Account is mandatory")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 

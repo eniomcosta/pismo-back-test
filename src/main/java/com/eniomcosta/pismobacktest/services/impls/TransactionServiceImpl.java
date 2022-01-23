@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -22,17 +21,17 @@ public class TransactionServiceImpl implements TransactionService {
     private final AccountService accountService;
 
     @Override
-    public TransactionDTO create(TransactionDTO transactionDTO) {
+    public Transaction create(TransactionDTO transactionDTO) {
         Account account = accountService.findById(transactionDTO.getAccountId());
 
         Transaction transaction = TransactionConverter.toEntity(transactionDTO, account);
 
         validate(transaction);
 
-        return TransactionConverter.toDto(transactionRepository.save(transaction));
+        return transactionRepository.save(transaction);
     }
 
-    public void validate(Transaction transaction) {
+    private void validate(Transaction transaction) {
         if (transaction.getAccount() == null || transaction.getAccount().getId() == null) {
             throw new EntityNotFoundException("A valid account must be provided");
         }

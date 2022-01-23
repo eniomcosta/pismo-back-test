@@ -35,7 +35,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     protected ResponseEntity<Object> handleEntityNotFound(
             EntityNotFoundException ex) {
-        ApiError apiError = new ApiError(NOT_FOUND);
+        ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
     }
@@ -51,7 +51,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(InvalidAmountException.class)
     protected ResponseEntity<Object> handledInvalidAmountException(
             InvalidAmountException ex) {
-        ApiError apiError = new ApiError(BAD_REQUEST, ex.getMessage(), ex.getCause());
+        ApiError apiError = new ApiError(BAD_REQUEST);
+        apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
     }
 

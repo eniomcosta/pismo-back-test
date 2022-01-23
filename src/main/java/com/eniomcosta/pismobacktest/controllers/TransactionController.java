@@ -1,6 +1,8 @@
 package com.eniomcosta.pismobacktest.controllers;
 
+import com.eniomcosta.pismobacktest.converters.TransactionConverter;
 import com.eniomcosta.pismobacktest.dtos.TransactionDTO;
+import com.eniomcosta.pismobacktest.entities.Transaction;
 import com.eniomcosta.pismobacktest.services.interfaces.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,7 +23,8 @@ public class TransactionController {
 
     @PostMapping
     public ResponseEntity<TransactionDTO> create(@Valid @RequestBody TransactionDTO newTransactionDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(transactionService.create(newTransactionDTO));
+        Transaction transaction = transactionService.create(newTransactionDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(TransactionConverter.toDto(transaction));
     }
 
 }

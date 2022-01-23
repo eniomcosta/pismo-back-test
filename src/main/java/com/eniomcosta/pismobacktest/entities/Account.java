@@ -27,7 +27,7 @@ public class Account {
     @Column(name = "document_number", unique = true, length = 11, nullable = false)
     private String documentNumber;
 
-    @OneToMany(mappedBy = "account", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "account", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Transaction> transactions = new LinkedHashSet<>();
 }
 
