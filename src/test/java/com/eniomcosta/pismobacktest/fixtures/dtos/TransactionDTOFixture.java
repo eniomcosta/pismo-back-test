@@ -5,11 +5,18 @@ import com.eniomcosta.pismobacktest.enums.OperationType;
 
 public class TransactionDTOFixture {
     public static TransactionDTO buildDefaultDebt() {
-        TransactionDTO transactionDTO = new TransactionDTO();
-        transactionDTO.setAmount(Double.parseDouble("1.00"));
-        transactionDTO.setOperationTypeId(OperationType.COMPRA_A_VISTA.getCode());
-        transactionDTO.setAccountId(1L);
+        return TransactionDTO.builder()
+                .amount(Double.parseDouble("1.00"))
+                .operationTypeId(OperationType.COMPRA_A_VISTA.getCode())
+                .accountId(1L)
+                .build();
+    }
 
-        return transactionDTO;
+    public static TransactionDTO buildDefaultCredit() {
+        return TransactionDTO.builder()
+                .amount(Double.parseDouble("1.00"))
+                .operationTypeId(OperationType.PAGAMENTO.getCode())
+                .accountId(1L)
+                .build();
     }
 }

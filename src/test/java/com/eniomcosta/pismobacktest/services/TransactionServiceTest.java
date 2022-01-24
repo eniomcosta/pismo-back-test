@@ -94,13 +94,34 @@ public class TransactionServiceTest {
         ArgumentCaptor<Transaction> argument = ArgumentCaptor.forClass(Transaction.class);
 
         verify(transactionRepository, times(1)).save(argument.capture());
-        assertEquals(transactionDTO.getOperationTypeId(), argument.getValue().getOperationType().getCode());
+        assertEquals(transactionDTO.getOperationTypeId(), argument.getValue().getOperationTypeId());
         assertEquals(transactionDTO.getAmount(), argument.getValue().getAmount() * -1);
         assertEquals(transactionDTO.getAccountId(), argument.getValue().getAccount().getId());
 
         assertEquals(transactionDTO.getAccountId(), transaction.getAccount().getId());
         assertEquals(transactionDTO.getAmount(), transaction.getAmount() * -1);
-        assertEquals(transactionDTO.getOperationTypeId(), transaction.getOperationType().getCode());
+        assertEquals(transactionDTO.getOperationTypeId(), transaction.getOperationTypeId());
+    }
+
+    @Test
+    void whenDataIsProvidedCorrectly_shouldCreateCreditTransactionSuccessfully() {
+        when(accountService.findById(any())).thenReturn(AccountFixture.buildDefault());
+        when(transactionRepository.save(any())).thenReturn(TransactionFixture.buildDefaultCredit());
+
+        TransactionDTO transactionDTO =  TransactionDTOFixture.buildDefaultCredit();
+
+        Transaction transaction = transactionService.create(transactionDTO);
+
+        ArgumentCaptor<Transaction> argument = ArgumentCaptor.forClass(Transaction.class);
+
+        verify(transactionRepository, times(1)).save(argument.capture());
+        assertEquals(transactionDTO.getOperationTypeId(), argument.getValue().getOperationTypeId());
+        assertEquals(transactionDTO.getAmount(), argument.getValue().getAmount());
+        assertEquals(transactionDTO.getAccountId(), argument.getValue().getAccount().getId());
+
+        assertEquals(transactionDTO.getAccountId(), transaction.getAccount().getId());
+        assertEquals(transactionDTO.getAmount(), transaction.getAmount());
+        assertEquals(transactionDTO.getOperationTypeId(), transaction.getOperationTypeId());
     }
 
 }

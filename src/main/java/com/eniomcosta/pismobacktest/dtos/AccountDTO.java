@@ -1,9 +1,7 @@
 package com.eniomcosta.pismobacktest.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -11,9 +9,11 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class AccountDTO {
 
-    @JsonProperty("account_id")
+    @JsonProperty(value = "account_id")
     private Long id;
 
     @NotEmpty(message = "Document Number should not be empty")

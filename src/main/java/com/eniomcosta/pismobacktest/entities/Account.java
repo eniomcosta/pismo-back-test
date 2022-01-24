@@ -1,18 +1,18 @@
 package com.eniomcosta.pismobacktest.entities;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@RequiredArgsConstructor
+@Builder
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "account", uniqueConstraints = {
         @UniqueConstraint(name = "uc_account_document", columnNames = {"document_number"})
 })

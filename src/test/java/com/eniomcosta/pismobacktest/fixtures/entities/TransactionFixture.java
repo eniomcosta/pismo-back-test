@@ -4,17 +4,28 @@ import com.eniomcosta.pismobacktest.entities.Transaction;
 import com.eniomcosta.pismobacktest.enums.OperationType;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 public class TransactionFixture {
     public static Transaction buildDefaultDebt() {
-        Transaction transaction = new Transaction();
+        return Transaction.builder()
+                .account(AccountFixture.buildDefault())
+                .id(1L)
+                .amount(Double.parseDouble("-1.00"))
+                .operationTypeId(OperationType.COMPRA_A_VISTA.getCode())
+                .eventDate(LocalDateTime.now())
+                .build();
 
-        transaction.setAccount(AccountFixture.buildDefault());
-        transaction.setId(1L);
-        transaction.setAmount(Double.parseDouble("-1.00"));
-        transaction.setOperationType(OperationType.COMPRA_A_VISTA);
-        transaction.setEventDate(Instant.now());
+    }
 
-        return transaction;
+    public static Transaction buildDefaultCredit() {
+        return Transaction.builder()
+                .account(AccountFixture.buildDefault())
+                .id(1L)
+                .amount(Double.parseDouble("1.00"))
+                .operationTypeId(OperationType.PAGAMENTO.getCode())
+                .eventDate(LocalDateTime.now())
+                .build();
+
     }
 }

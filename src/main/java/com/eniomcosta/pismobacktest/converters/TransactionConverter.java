@@ -6,27 +6,29 @@ import com.eniomcosta.pismobacktest.entities.Transaction;
 import com.eniomcosta.pismobacktest.enums.OperationType;
 import com.eniomcosta.pismobacktest.exceptions.InvalidEnumOrdinalException;
 
+import java.time.LocalDateTime;
+
 public class TransactionConverter {
     public static TransactionDTO toDto(Transaction transaction) {
-        TransactionDTO transactionDTO = new TransactionDTO();
-        transactionDTO.setOperationTypeId(transaction.getOperationType().getCode());
-        transactionDTO.setAmount(transaction.getAmount());
-        transactionDTO.setAccountId(transaction.getAccount().getId());
-        return transactionDTO;
+        return TransactionDTO.builder()
+                .operationTypeId(transaction.getOperationTypeId())
+                .amount(transaction.getAmount())
+                .accountId(transaction.getAccount().getId())
+                .build();
     }
 
     public static Transaction toEntity(TransactionDTO transactionDTO, Account account) {
-        Transaction transaction = new Transaction();
-        transaction.setAccount(account);
+        OperationType operationType = OperationType.getOperationById(transactionDTO.getOperationTypeId())
+                .orElseThrow(() -> new InvalidEnumOrdinalException("Operation Type Id provided is invalid"));
 
-        transaction.setOperationType(OperationType.getOperationById(transactionDTO.getOperationTypeId())
-                .orElseThrow(() -> new InvalidEnumOrdinalException("Operation Type Id provided is invalid")));
-
-        Double amount = transaction.getOperationType().isDebtOperation() ?
+        Double amount = operationType.isDebtOperation() ?
                 (transactionDTO.getAmount() * -1) : transactionDTO.getAmount();
 
-        transaction.setAmount(amount);
-
-        return transaction;
+        return Transaction.builder()
+                .account(account)
+                .operationTypeId(operationType.getCode())
+                .amount(amount)
+                .eventDate(LocalDateTime.now())
+                .build();
     }
 }

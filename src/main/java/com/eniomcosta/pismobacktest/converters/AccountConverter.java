@@ -5,15 +5,14 @@ import com.eniomcosta.pismobacktest.entities.Account;
 
 public class AccountConverter {
     public static AccountDTO toDto(Account account){
-        AccountDTO accountDTO = new AccountDTO();
-        accountDTO.setId(account.getId());
-        accountDTO.setDocumentNumber(account.getDocumentNumber());
-        return accountDTO;
+        return AccountDTO.builder()
+                .id(account.getId())
+                .documentNumber(account.getDocumentNumber()).build();
     }
 
     public static Account toEntity(AccountDTO accountDto){
-        Account account = new Account();
-        account.setDocumentNumber(accountDto.getDocumentNumber());
-        return account;
+        return Account.builder()
+                .documentNumber(accountDto.getDocumentNumber())
+                .build();
     }
 }

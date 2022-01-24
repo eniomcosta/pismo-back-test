@@ -37,4 +37,4 @@ This application is part of Pismo's backend challenge test.
 - http://localhost:8080/swagger-ui.html
 
 ### H2 Database UI
-- http://localhost:8080/h2-database
+- http://localhost:8080/h2-console

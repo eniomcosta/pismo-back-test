@@ -76,7 +76,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    void whenAccountIdIsInvalid_shouldReturnSuccessfully() {
+    void whenAccountIdIsValid_shouldReturnSuccessfully() {
         Account account = AccountFixture.buildDefault();
 
         when(accountRepository.findById(any())).thenReturn(Optional.of(account));

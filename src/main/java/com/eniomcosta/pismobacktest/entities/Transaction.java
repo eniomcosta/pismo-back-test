@@ -1,17 +1,20 @@
 package com.eniomcosta.pismobacktest.entities;
 
-import com.eniomcosta.pismobacktest.enums.OperationType;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
+@Builder
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "transaction")
 public class Transaction {
     @Id
@@ -24,15 +27,14 @@ public class Transaction {
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 
-    @NotNull(message = "Operation Type is mandatory")
-    @Enumerated
-    @Column(name = "operation_type", nullable = false)
-    private OperationType operationType;
+    @NotNull
+    @JsonProperty("operation_type_id")
+    private Integer operationTypeId;
 
     @NotNull(message = "Amount is mandatory")
     @Column(name = "amount", nullable = false)
     private Double amount;
 
-    @CreatedDate
-    private Instant eventDate;
+    @Column(name = "event_date", nullable = false)
+    private LocalDateTime eventDate;
 }

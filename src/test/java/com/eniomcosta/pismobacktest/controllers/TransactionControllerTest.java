@@ -46,7 +46,7 @@ public class TransactionControllerTest {
     void whenContentInInvalid_thenReturnsStatus400() throws Exception {
         mvc.perform(post("/transactions")
                         .contentType("application/json")
-                        .content(objectMapper.writeValueAsString(new TransactionDTO())))
+                        .content(objectMapper.writeValueAsString(TransactionDTO.builder().build())))
                 .andExpect(status().isBadRequest());
     }
 
