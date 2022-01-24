@@ -1,0 +1,13 @@
+version: '3.1'
+services:
+  API:
+    image: 'pismo-back-test.jar'
+    ports:
+      - "8080:8080"
+    restart: always
+    container_name: pismo-back-test
+    build: .
+    volumes:
+      - ./:/pismo-back-test
+      - ~/.m2:/root/.m2
+    command: mvn clean spring-boot:run
