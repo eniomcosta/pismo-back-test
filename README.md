@@ -33,8 +33,8 @@ This application is part of Pismo's backend challenge test.
 ### Stoping application
 - Execute Docker command: `docker-compose down -v`
 
-### Running tests
-- Execute maven command: `mvn test` [ˆ2]
+### Running tests [^2]
+- Execute maven command: `mvn test` 
 
 ## Tools URLs [^1]
 ### Swagger UI
