@@ -34,14 +34,14 @@ This application is part of Pismo's backend challenge test.
 - Execute Docker command: `docker-compose down -v`
 
 ### Running tests
-- Execute maven command: `mvn test`
-Tip: 
+- Execute maven command: `mvn test` [ˆ2]
 
 ## Tools URLs [^1]
-###Swagger UI
+### Swagger UI
 - http://localhost:8080/swagger-ui.html
 
 ### H2 Database UI
 - http://localhost:8080/h2-console
 
 [^1]: With application running locally
+[^2]: The `mvn install` command already execute the tests
