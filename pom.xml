@@ -93,12 +93,12 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <configuration>
                     <excludes>
-                        <exclude>br/com/eniomcosta/pismobacktest/config/*.class</exclude>
-                        <exclude>br/com/eniomcosta/pismobacktest/entities/*.class</exclude>
-                        <exclude>br/com/eniomcosta/pismobacktest/enums/*.class</exclude>
-                        <exclude>br/com/eniomcosta/pismobacktest/exceptions/*.class</exclude>
-                        <exclude>br/com/eniomcosta/pismobacktest/dtos/*.class</exclude>
-                        <exclude>br/com/eniomcosta/pismobacktest/converters/*.class</exclude>
+                        <exclude>com/eniomcosta/pismobacktest/config/*.class</exclude>
+                        <exclude>com/eniomcosta/pismobacktest/entities/*.class</exclude>
+                        <exclude>com/eniomcosta/pismobacktest/enums/*.class</exclude>
+                        <exclude>com/eniomcosta/pismobacktest/exceptions/*.class</exclude>
+                        <exclude>com/eniomcosta/pismobacktest/dtos/*.class</exclude>
+                        <exclude>com/eniomcosta/pismobacktest/converters/*.class</exclude>
                     </excludes>
                 </configuration>
                 <version>0.8.7</version>
