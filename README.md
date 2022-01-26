@@ -1,3 +1,5 @@
+[![Build Status](https://app.travis-ci.com/eniomcosta/pismo-back-test.svg?branch=main)](https://app.travis-ci.com/eniomcosta/pismo-back-test)
+[![codecov](https://codecov.io/gh/eniomcosta/pismo-back-test/branch/main/graph/badge.svg?token=CONN3YL3ZN)](https://codecov.io/gh/eniomcosta/pismo-back-test)
 # Pismo Back Test 3.0
 Pismo's backend test challenge
 
