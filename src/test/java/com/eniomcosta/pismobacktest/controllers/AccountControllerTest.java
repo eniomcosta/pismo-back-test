@@ -42,17 +42,6 @@ public class AccountControllerTest {
     }
 
     @Test
-    void whenDocumentNumberSizeIsInvalid_thenReturnsStatus400() throws Exception {
-        AccountDTO accountDTO = AccountDTOFixture.buildDefault();
-        accountDTO.setDocumentNumber("123");
-
-        mvc.perform(post("/accounts")
-                        .contentType("application/json")
-                        .content(objectMapper.writeValueAsString(accountDTO)))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
     void whenInputValid_thenReturnsStatus200() throws Exception {
         AccountDTO accountDTO = AccountDTOFixture.buildDefault();
         Account account = AccountFixture.buildDefault();
