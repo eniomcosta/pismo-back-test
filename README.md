@@ -40,8 +40,11 @@ This application is part of Pismo's backend challenge test.
 ### Swagger UI
 - http://localhost:8080/swagger-ui.html
 
-### H2 Database UI
+### H2 Database UI [ˆ3]
 - http://localhost:8080/h2-console
+
 
 [^1]: With application running locally
 [^2]: The `mvn install` command already execute the tests
+[^3]: Use `jdbc:h2:mem:testdb` as JDBC URL
+
