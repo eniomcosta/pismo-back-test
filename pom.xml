@@ -99,6 +99,7 @@
                         <exclude>com/eniomcosta/pismobacktest/exceptions/*.class</exclude>
                         <exclude>com/eniomcosta/pismobacktest/dtos/*.class</exclude>
                         <exclude>com/eniomcosta/pismobacktest/converters/*.class</exclude>
+                        <exclude>com/eniomcosta/pismobacktest/PismoBackTestApplication.java</exclude>
                     </excludes>
                 </configuration>
                 <version>0.8.7</version>
