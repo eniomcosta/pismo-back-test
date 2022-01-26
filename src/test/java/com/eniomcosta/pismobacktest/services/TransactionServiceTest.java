@@ -1,6 +1,7 @@
 package com.eniomcosta.pismobacktest.services;
 
 import com.eniomcosta.pismobacktest.dtos.TransactionDTO;
+import com.eniomcosta.pismobacktest.entities.Account;
 import com.eniomcosta.pismobacktest.entities.Transaction;
 import com.eniomcosta.pismobacktest.exceptions.InvalidAmountException;
 import com.eniomcosta.pismobacktest.exceptions.InvalidEnumOrdinalException;
@@ -43,6 +44,20 @@ public class TransactionServiceTest {
         );
 
         String expectedMessage = "Account not found with id: 1";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    void whenAccountDoesNotExists_shouldThrowException2() {
+        when(accountService.findById(any())).thenReturn(Account.builder().build());
+
+        Exception exception = assertThrows(EntityNotFoundException.class, () ->
+                transactionService.create(TransactionDTOFixture.buildDefaultDebt())
+        );
+
+        String expectedMessage = "A valid account must be provided";
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
