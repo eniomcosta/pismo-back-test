@@ -17,7 +17,6 @@ public class AccountDTO {
     private Long id;
 
     @NotEmpty(message = "Document Number should not be empty")
-    @Size(min = 11, max = 11, message = "Document Number should have between 11 and characters")
     @JsonProperty("document_number")
     private String documentNumber;
 }
