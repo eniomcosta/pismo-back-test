@@ -1,13 +1,19 @@
-version: '3.1'
+version: '3.7'
 services:
-  API:
-    image: 'pismo-back-test.jar'
-    ports:
-      - "8080:8080"
+  pismo-bt:
+    image: pismo-back-test.jar
     restart: always
     container_name: pismo-back-test
     build: .
+    working_dir: /pismo-back-test
     volumes:
       - ./:/pismo-back-test
       - ~/.m2:/root/.m2
+    ports:
+      - 8080:8080
     command: mvn clean spring-boot:run
+    networks:
+      - pismo-back-test-network
+networks:
+  pismo-back-test-network:
+    driver: bridge
