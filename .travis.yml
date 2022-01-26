@@ -4,9 +4,7 @@ before_install:
   – chmod +x mvnw
 
 jdk:
-  – openjdk8
-
-script: "mvn cobertura:cobertura"
+  – openjdk11
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t 9fe63f08-61f6-423f-a0ae-2ec03126181b
