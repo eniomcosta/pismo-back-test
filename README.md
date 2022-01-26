@@ -25,10 +25,6 @@ This application is part of Pismo's backend challenge test.
 
 ## Running the application
 
-### Creating JAR file
-- Execute maven command: `mvn install `
-- It will create a JAR file inside `/target` called `pismo-back-test.jar`
-
 ### Starting application
 - Execute Docker command: `docker-compose up -d --build`
 
